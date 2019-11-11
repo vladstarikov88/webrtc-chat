@@ -1,18 +1,56 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <h2>Room</h2>
+    <input v-model="roomId">
+    <vue-webrtc
+      ref="webrtc"
+      width="100%"
+      :roomId="roomId"
+      @joined-room="logEvent"
+      @left-room="logEvent"
+      @open-room="logEvent"
+      @error="onError"
+    />
+    <button
+      type="button"
+      @click="onJoin"
+    >Join</button>
+    <button
+      type="button"
+      @click="onLeave"
+    >Leave</button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import { WebRTC } from 'vue-webrtc';
 
 export default {
-  name: 'home',
+  name: 'app',
   components: {
-    HelloWorld,
+    'vue-webrtc': WebRTC,
+  },
+  data() {
+    return {
+      img: null,
+      roomId: 'public-room',
+    };
+  },
+  methods: {
+    onJoin() {
+      // какой долбаеб писал?
+      this.$refs.webrtc.join();
+    },
+    onLeave() {
+      // кайф
+      this.$refs.webrtc.leave();
+    },
+    onError(error, stream) {
+      console.log('On Error Event', error, stream);
+    },
+    logEvent(event) {
+      console.log('Event : ', event);
+    },
   },
 };
 </script>

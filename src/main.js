@@ -1,8 +1,12 @@
 import Vue from 'vue';
+// import WebRTC from 'vue-webrtc';
+import * as io from 'socket.io-client';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';
+
+window.io = io;
 
 Vue.config.productionTip = false;
 
