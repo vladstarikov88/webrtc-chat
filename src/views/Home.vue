@@ -10,6 +10,9 @@
       @left-room="logEvent"
       @open-room="logEvent"
       @error="onError"
+      @opened-room="logEvent"
+      @share-started="logEvent"
+      @share-stopped="logEvent"
     />
     <button
       type="button"
@@ -39,6 +42,7 @@ export default {
   methods: {
     onJoin() {
       // какой долбаеб писал?
+      console.log('dsa');
       this.$refs.webrtc.join();
     },
     onLeave() {
