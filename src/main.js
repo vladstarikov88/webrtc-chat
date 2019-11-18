@@ -5,6 +5,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';
+import '@/styles/index.scss';
 
 window.io = io;
 
