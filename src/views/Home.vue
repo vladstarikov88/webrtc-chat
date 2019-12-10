@@ -9,7 +9,7 @@
           type="text"
           placeholder="Идентификатор комнаты"
         >
-        <vue-webrtc
+        <webrtc-chat 
           class="video-container"
           ref="webrtc"
           width="100%"
@@ -19,8 +19,6 @@
           @open-room="logEvent"
           @error="onError"
           @opened-room="logEvent"
-          @share-started="logEvent"
-          @share-stopped="logEvent"
         />
 
         <div class="buttons">
@@ -41,13 +39,13 @@
 </template>
 
 <script>
-import { WebRTC } from 'vue-webrtc';
+import WebrtcChat from '@/components/webrtc-chat.vue';
 import Card from '@/components/Card.vue';
 
 export default {
   name: 'app',
   components: {
-    'vue-webrtc': WebRTC,
+    WebrtcChat,
     Card,
   },
   data() {
@@ -58,12 +56,9 @@ export default {
   },
   methods: {
     onJoin() {
-      // какой долбаеб писал?
-      console.log('dsa');
       this.$refs.webrtc.join();
     },
     onLeave() {
-      // кайф
       this.$refs.webrtc.leave();
     },
     onError(error, stream) {
